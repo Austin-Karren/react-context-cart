@@ -11,6 +11,14 @@ const Cart = () => {
         console.log(context);
     },[]);
 
+    const options = (maxAllow) => {
+      let list = [];
+      for (let i = 0; i <= maxAllow; i++) {
+        list.push(<option key={i} value={i}>{i}</option>);
+      }
+      return list;
+    }
+
     return(
         <div className='Cart'>
             <MainNavigation
@@ -28,13 +36,27 @@ const Cart = () => {
                 {cartItem.quantity})
               </div>
               <div>
+                <select type='select' value={cartItem.quantity} onChange={(e) => context.changeQuantity(cartItem.id, e.target.value)}>
+                  {options(cartItem.maxItem)}
+                </select>
+              </div>
+              <div>
                 <button
-                  onClick={context.removeProductFromCart.bind(
-                    this,
+                  onClick={() => context.removeProductFromCart(
                     cartItem.id
                   )}
                 >
-                  Remove from Cart
+                  -
+                </button>
+                <button onClick={() => context.addProductToCart(cartItem)}>
+                  +
+                </button>
+                <button
+                  onClick={() => context.removeAllProductFromCart(
+                    cartItem.id
+                  )}
+                >
+                  Delete
                 </button>
               </div>
             </li>

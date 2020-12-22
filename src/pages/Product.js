@@ -1,5 +1,5 @@
 import React from 'react';
-import './Product.css'
+import './Product.css';
 
 import { ShopContext } from '../providers/CartProvider';
 import MainNavigation from '../components/MainNavigation';
